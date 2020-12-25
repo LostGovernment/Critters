@@ -1,0 +1,68 @@
+// ant 
+// Ali A Basbeth
+// 08/12/2020
+// TA: Jeremy Chen 
+// take home assessment #8
+// Ant class is always have the red color, and it use one character.
+// It will always follow the same attack style, and moves on three
+// different direction. 
+// Constuctor - describe the direction of the ant
+// Behavior: 
+//      Color - Always Red
+//      Eating - Always Eat
+//      Fighting - Always Scracth
+//      Movement - if true move south or east. Otherwise, move north or east
+//      String - An ant is created with "%" modulo operator sign
+import java.util.*;
+import java.awt.*;
+
+public class Ant extends Critter {
+    // fields 
+    private int moves;
+    private boolean walkSouth;
+  
+    // Constructor of Ant 
+    // Parameter - boolean walkSouth
+    public Ant(boolean walkSouth) {
+        this.walkSouth = walkSouth;
+        moves = 0;
+    }
+    
+    // Color always red 
+    // Return the Color Red
+    public Color getColor() {
+        return Color.RED;
+    }
+
+    // Character of ant
+    // Return the toString always percentage sign
+    public String toString() { 
+        return "%";
+    }
+
+    // Eating behavior of ant 
+    // Return an Ant always eat
+    public boolean eat() {
+        return true;
+    }
+
+    // Return always the Attack SCRATCH
+    public Attack fight(String opponent) {
+        return Attack.SCRATCH;
+    }
+
+    // Return Direction EAST or South:
+    // if its true. 
+    // Return Direction NORTH if not true.
+    public Direction getMove() {
+        moves++;
+        if (moves % 2 == 0) {
+            return Direction.EAST;
+        }
+        if (walkSouth) {
+            return Direction.SOUTH;
+        } else {
+            return Direction.NORTH;
+        }
+    }
+}
