@@ -1,0 +1,91 @@
+// Hippo class always move five times base on randomness of the
+// direction. It will eat if its still hungry, and stops while it is 
+// not hungry. 
+// Constuctor - describe the total of food the hippo will eat.
+// Behavior: 
+//      Color - Grey or white
+//      Eating - Eat if hugry
+//      Fighting - Scratch or pounce
+//      Movement - if true move south or eats. Otherwise, move north or east
+//      String - the amount of hunger number of the remaining. 
+import java.util.*;
+import java.awt.*;
+
+public class Hippo extends Critter {
+    // fields
+    private int hunger;
+    private Random rand;
+    private int moves;
+    private Direction direction;
+
+    // Constuctors
+    public Hippo (int hunger) {
+        this.hunger = hunger; 
+        rand = new Random();
+        int value = rand.nextInt(4);
+        if (value == 0) {
+            direction = Direction.NORTH;
+        } else if (value == 1) {
+            direction = Direction.SOUTH;
+        } else if (value == 2) {
+            direction = Direction.EAST;
+        } else if (value == 3) {
+            direction = Direction.WEST;
+        }
+        moves = - 1;
+    } 
+
+    // Return the direction of the hippo
+    public Direction getMove() {
+        moves++;
+        if (moves % 5 == 0) {
+            int value = rand.nextInt(4);
+            if (value == 0) {
+                direction = Direction.NORTH;
+            } else if (value == 1) {
+                direction = Direction.SOUTH;
+            } else if (value == 2) {
+                direction = Direction.EAST;
+            } else if (value == 3) {
+                direction = Direction.WEST;
+            }
+        } 
+        return direction;
+    }
+
+    // Return true if its hungry
+    // Return false if its not hungry 
+    public boolean eat() {
+        if (hunger > 0) {
+            hunger--;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    // Return Attack SCRATCH if its hungry 
+    // Return Attack POUNCE if not 
+    public Attack fight(String opponent) {
+        if (hunger > 0) {
+            return Attack.SCRATCH;
+        } else {
+            return Attack.POUNCE;
+        }
+    }
+
+    // Return Color GRAY if its hungry 
+    // Return Color WHITE if its not 
+    public Color getColor() {
+        if (hunger > 0) {
+            return Color.GRAY;
+        } else {
+            return Color.WHITE;
+        }
+    }
+
+    // Return the rest numbers from the hunger
+    public String toString() {
+        return "" + hunger;
+    }
+}
