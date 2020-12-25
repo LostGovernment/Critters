@@ -1,0 +1,72 @@
+// Bird class follow the order of a clock when it moves. 
+// it inherit the deafult behavior of eating. 
+// it differentiate between two fighting styles
+// it has different characters based on the movement. 
+// Constuctor - describe the movement of the birds
+// Behavior: 
+//      Color - Always Blue
+//      Eating - Never eat(default)
+//      Fighting - Roar or Pounce
+//      Movement - North, East, South, and West(repeat)
+//      String - ^, >, V, <
+import java.util.*;
+import java.awt.*;
+
+public class Bird extends Critter {
+    // fields
+    private int moves;
+
+    // Constructor of Birds 
+    public Bird() {
+        moves = -1;
+    }
+
+    // Return the Birds Color
+    // which is always BLUE. 
+    public Color getColor() {
+        return Color.BLUE;
+    }
+
+    // Return the characters of birds
+    // base on each of the movements.
+    public String toString() { 
+        int mod = moves % 12;
+        if (mod < 3) {
+            return "^";
+        } else if (mod < 6) {
+            return ">";
+        } else if (mod < 9) {
+            return "V";
+        }  else  {
+            return "<";
+        }
+    }
+
+    // Return Attack ROAR;
+    // if the opponent looks like percentage sign. 
+    // Return Attack POUNCE otherwise.
+    public Attack fight(String opponent) {
+        if (opponent.equals("%")) {
+            return Attack.ROAR;
+        } else {
+            return Attack.POUNCE;
+        }
+    }
+
+    // Return each direction three times 
+    // following the distinct pattern for 
+    // different moves. 
+    public Direction getMove() {
+        moves++;
+        int mod = moves % 12;
+        if (mod < 3) {
+            return Direction.NORTH;
+        } else if (mod < 6) {
+            return Direction.EAST;
+        } else if (mod < 9) {
+            return Direction.SOUTH;
+        }  else  {
+            return Direction.WEST;
+        }
+    }
+}
