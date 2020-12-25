@@ -1,0 +1,47 @@
+// Vulture class always have one color, it inheret the same characters
+// as Bird class which determined the characters based on the movement. 
+// it inherit the movement of birds. 
+// Constuctor - describe the total of food the hippo will eat.
+// Behavior: 
+//      Color - Black
+//      Eating - Eat the first food
+//      Fighting - Scratch or pounce
+//      Movement - North, East, South, and West(repeat)
+//      String - ^, >, V, <
+import java.util.*;
+import java.awt.*;
+
+public class Vulture extends Bird {
+    // fields
+    private boolean hungry;
+    
+    // Constructor of vulture 
+    public Vulture() {
+        hungry = true;
+    }
+
+    // Return Color of vulture
+    // which is always BLACK
+    public Color getColor() {
+        return Color.BLACK;
+    }
+
+
+    // Return true and always eating 
+    // after fight, or created. 
+    // Return false if the condition 
+    // other than the true. 
+    public boolean eat() {
+        if (hungry) {
+            hungry = false;
+            return true;
+        }
+        return false;
+    }
+
+    // Return if the opponent looks like ant
+    public Attack fight(String opponent) {
+        hungry = true;
+        return super.fight(opponent);
+    }
+}
